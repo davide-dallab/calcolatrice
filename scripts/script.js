@@ -10,7 +10,6 @@ let overwrite = false;
 function setDisplayValue(newValue){
     if(decimal)
         newValue = floorTo(newValue, decimalMultiplier);
-    console.log(newValue);
     currentDisplayValue = newValue;
     display.textContent = newValue;
 }
@@ -43,6 +42,39 @@ for (let index = 0; index < digits.length; index++) {
 function listenForDigit(number){
     addDigit(number);
 }
+
+// KEYBOARD
+document.addEventListener('keydown', function(event) {
+    console.log(event.key);
+    if(event.key >= '0' && event.key <= '9'){
+        addDigit(Number(event.key));
+    }
+    else if(event.key === '.'){
+        comma();
+    }
+    else if(event.key === 'Enter'){
+        equal();
+    }
+    else if(event.key === 'Backspace'){
+        backspace();
+    }
+    else if(event.key === 'Delete'){
+        if(event.ctrlKey || event.shiftKey) cancelEverything();
+        else cancelNumber();
+    }
+    else if(event.key === '+'){
+        addition();
+    }
+    else if(event.key === '-'){
+        subtraction();
+    }
+    else if(event.key === '*'){
+        multiplication();
+    }
+    else if(event.key === '/'){
+        division();
+    }
+});
 
 // OPERATIONS
 const operationMethods = {
@@ -85,20 +117,22 @@ function backspace(){
     }
 }
 
-function squareRoot(){
+// TODO: struttura per mantenere i risultati
 
+function squareRoot(){
+    // TODO: radice quadrata
 }
 
 function division(){
-
+    // TODO: divisione
 }
 
 function multiplication(){
-
+    // TODO: moltiplicazione
 }
 
 function subtraction(){
-
+    // TODO: sottrazione
 }
 
 function comma(){
@@ -106,15 +140,14 @@ function comma(){
 }
 
 function equal(){
-
+    // TODO: risultato
 }
 
 function addition(){
-
+    // TODO: addizione
 }
 
 // UTILS
-console.log(floorTo(17.93, .1));
 function floorTo(number, precision){
     const realPrecision = Math.round(1 / precision);
     return Math.floor(number * realPrecision + .1) / realPrecision;
