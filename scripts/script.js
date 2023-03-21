@@ -1,5 +1,6 @@
 // DISPLAY
 const display = document.getElementById('display');
+console.log("hello world")
 
 let storedValue = 0;
 let currentDisplayValue = 0;
