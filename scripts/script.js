@@ -198,7 +198,7 @@ function div(){
 }
 
 function squareR(){
-    setDisplayValue(Math.sqrt(storedNumber));
+    setDisplayValue(Math.sqrt(currentDisplayValue));
     operationEnded = true;
     state.operation = null;
 }
