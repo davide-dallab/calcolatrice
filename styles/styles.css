@@ -11,7 +11,7 @@
 
 @media (prefers-color-scheme: light) {
     :root {
-        --text-color: #002;
+        --text-color: rgb(255, 255, 255);
         --background-color: #ddd;
     }
 }
@@ -41,7 +41,7 @@
 }
 
 .calcolatrice {
-    background-color: #fff8;
+    background-color: rgba(0, 0, 0);
     /* padding: 10px; */
     border-radius: 10px;
     table-layout: fixed;
@@ -51,7 +51,7 @@
 .calcolatrice td {
     padding: 25px;
     border-radius: 10px;
-    background-color: #fff8;
+    background-color: rgba(34, 33, 33, 0.533);
     margin: 5px;
     font-size: 25px;
 }
@@ -64,4 +64,10 @@
 .calcolatrice #display {
     font-size: 30px;
     text-align: right;
+    
+}
+
+.calcolatrice .operation {
+    color: rgb(213, 111, 47);
+    font-weight: bold;
 }
