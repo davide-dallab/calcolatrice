@@ -21,3 +21,4 @@ Il progetto è stato portato avanti dai seguenti membri con i seguenti ruoli:
 ## Il progetto
 
 Il progetto si pone come obiettivo quello di sviluppare un'applicazione web che permetta l'utilizzo di una semplice calcolatrice standard con le operazioni matematiche fondamentali.
+Lo scopo del progetto è quello di allenare le proprie competenze con il software git e il sito github, ad oggi ampiamente utilizzati nel mondo del lavoro.

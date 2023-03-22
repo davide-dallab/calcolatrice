@@ -68,6 +68,10 @@
 }
 
 .calcolatrice .operation {
-    color: rgb(213, 111, 47);
+    color: hsl(23, 66%, 51%);
     font-weight: bold;
+}
+
+.calcolatrice .operation svg {
+    height: 25px;
 }
