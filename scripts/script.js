@@ -159,6 +159,7 @@ function equal(){
 function addition(){
     operation();
     state.operation = add;
+    
 }
 
 function add(){
@@ -168,9 +169,13 @@ function add(){
 }
 
 function sub(){
-    setDisplayValue(state.storedNumber - currentDisplayValue);
-    operationEnded = true;
-    state.operation = null;
+    if(state.storedNumber){
+
+    }else{
+        setDisplayValue(state.storedNumber - currentDisplayValue);
+        operationEnded = true;
+        state.operation = null;
+    }
 }
 
 function times(){
@@ -185,15 +190,15 @@ function div(){
     state.operation = null;
 }
 
-function operation(){
-    state.storedNumber = currentDisplayValue;
-    operationEnded = true;
-}
-
 function squareR(){
     setDisplayValue(Math.sqrt(currentDisplayValue));
     operationEnded = true;
     state.operation = null;
+}
+
+function operation(){
+    state.storedNumber = currentDisplayValue;
+    operationEnded = true;
 }
 
 // UTILS
