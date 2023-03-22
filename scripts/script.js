@@ -1,12 +1,10 @@
 // DISPLAY
 const display = document.getElementById('display');
-console.log("hello world")
 
-let storedValue = 0;
 let currentDisplayValue = 0;
 let decimal = false;
 let decimalMultiplier = .1;
-let overwrite = false;
+let operationEnded = false;
 
 function setDisplayValue(newValue){
     if(decimal)
@@ -21,9 +19,10 @@ function resetDecimal(){
 }
 
 function addDigit(newDigit){
-    if(overwrite){
+    if(operationEnded){
         resetDecimal();
         setDisplayValue(0);
+        operationEnded = false;
     }
     if(decimal){
         setDisplayValue(currentDisplayValue + decimalMultiplier * newDigit);
@@ -100,7 +99,7 @@ for (let index = 0; index < operations.length; index++) {
 
 function cancelEverything(){
     cancelNumber();
-    storedValue = 0;
+    state.storedNumber = 0;
 }
 
 function cancelNumber(){
@@ -119,21 +118,29 @@ function backspace(){
 }
 
 // TODO: struttura per mantenere i risultati
+const state = {
+    storedNumber: 0,
+    operation: null
+};
 
 function squareRoot(){
     // TODO: radice quadrata
+    state.operation = squareRoot;
 }
 
 function division(){
     // TODO: divisione
+    state.operation = division;
 }
 
 function multiplication(){
     // TODO: moltiplicazione
+    state.operation = multiplication;
 }
 
 function subtraction(){
     // TODO: sottrazione
+    state.operation = subtraction;
 }
 
 function comma(){
@@ -142,10 +149,23 @@ function comma(){
 
 function equal(){
     // TODO: risultato
+    state.operation?.();
 }
 
 function addition(){
-    // TODO: addizione
+    operation();
+    state.operation = add;
+}
+
+function add(){
+    setDisplayValue(state.storedNumber + currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function operation(){
+    state.storedNumber = currentDisplayValue;
+    operationEnded = true;
 }
 
 // UTILS
