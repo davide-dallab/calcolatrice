@@ -5,6 +5,7 @@ let currentDisplayValue = 0;
 let decimal = false;
 let decimalMultiplier = .1;
 let operationEnded = false;
+let negative = false;
 
 function setDisplayValue(newValue){
     if(decimal)
@@ -44,8 +45,8 @@ function listenForDigit(number){
 }
 
 // KEYBOARD
+const ceButton = document.getElementById('cancelEverything');
 document.addEventListener('keydown', function(event) {
-    console.log(event.key);
     if(event.key >= '0' && event.key <= '9'){
         addDigit(Number(event.key));
     }
@@ -59,7 +60,13 @@ document.addEventListener('keydown', function(event) {
         backspace();
     }
     else if(event.key === 'Delete'){
-        if(event.ctrlKey || event.shiftKey) cancelEverything();
+        if(event.ctrlKey || event.shiftKey){
+            cancelEverything();
+            ceButton.classList.add('pressed');
+            setTimeout(function(){
+                ceButton.classList.remove('pressed');
+            }, 100);
+        }
         else cancelNumber();
     }
     else if(event.key === '+'){
@@ -125,28 +132,31 @@ const state = {
 
 function squareRoot(){
     // TODO: radice quadrata
-    state.operation = squareRoot;
+    operation();
+    state.operation = squareR;
 }
 
 function division(){
     // TODO: divisione
-    state.operation = division;
+    operation();
+    state.operation = div;
 }
 
 function multiplication(){
     // TODO: moltiplicazione
-    state.operation = multiplication;
+    operation();
+    state.operation = times;
 }
 
 function subtraction(){
-    operation();
-    state.operation = subtract;
-}
+    // TODO: sottrazione
+    if(currentDisplayValue === 0){
 
-function subtract(){
-    setDisplayValue(state.storedNumber - currentDisplayValue);
-    operationEnded = true;
-    state.operation = null;
+    }
+    else{
+        operation();
+        state.operation = sub;
+    }
 }
 
 function comma(){
@@ -160,10 +170,35 @@ function equal(){
 function addition(){
     operation();
     state.operation = add;
+    
 }
 
 function add(){
     setDisplayValue(state.storedNumber + currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function sub(){
+    setDisplayValue(state.storedNumber - currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function times(){
+    setDisplayValue(state.storedNumber * currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function div(){
+    setDisplayValue(state.storedNumber / currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function squareR(){
+    setDisplayValue(Math.sqrt(storedNumber));
     operationEnded = true;
     state.operation = null;
 }

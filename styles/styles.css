@@ -61,7 +61,8 @@
     transition: background-color 150ms;
 }
 
-.calcolatrice td:not(#display):hover {
+.calcolatrice td:not(#display):hover,
+.calcolatrice td.pressed {
     cursor: pointer;
     background-color: rgba(61, 61, 61, 0.4);
 }
@@ -74,10 +75,10 @@
 }
 
 .calcolatrice .operation {
-    color: rgb(213, 111, 47);
+    color: hsl(23, 66%, 51%);
     font-weight: bold;
 }
 
-.calcolatrice .operation #backspace {
+.calcolatrice .operation svg {
     height: 25px;
 }
