@@ -125,28 +125,26 @@ const state = {
 
 function squareRoot(){
     // TODO: radice quadrata
-    state.operation = squareRoot;
+    operation();
+    state.operation = squareR;
 }
 
 function division(){
     // TODO: divisione
-    state.operation = division;
+    operation();
+    state.operation = div;
 }
 
 function multiplication(){
     // TODO: moltiplicazione
-    state.operation = multiplication;
+    operation();
+    state.operation = times;
 }
 
 function subtraction(){
+    // TODO: sottrazione
     operation();
-    state.operation = subtract;
-}
-
-function subtract(){
-    setDisplayValue(state.storedNumber - currentDisplayValue);
-    operationEnded = true;
-    state.operation = null;
+    state.operation = sub;
 }
 
 function comma(){
@@ -160,10 +158,35 @@ function equal(){
 function addition(){
     operation();
     state.operation = add;
+    
 }
 
 function add(){
     setDisplayValue(state.storedNumber + currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function sub(){
+    setDisplayValue(state.storedNumber - currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function times(){
+    setDisplayValue(state.storedNumber * currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function div(){
+    setDisplayValue(state.storedNumber / currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function squareR(){
+    setDisplayValue(Math.sqrt(storedNumber));
     operationEnded = true;
     state.operation = null;
 }
