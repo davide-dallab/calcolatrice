@@ -168,13 +168,9 @@ function add(){
 }
 
 function sub(){
-    if(state.storedNumber){
-
-    }else{
-        setDisplayValue(state.storedNumber - currentDisplayValue);
-        operationEnded = true;
-        state.operation = null;
-    }
+    setDisplayValue(state.storedNumber - currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
 }
 
 function times(){
@@ -190,7 +186,7 @@ function div(){
 }
 
 function squareR(){
-    setDisplayValue(Math.sqrt(currentDisplayValue));
+    setDisplayValue(Math.sqrt(storedNumber));
     operationEnded = true;
     state.operation = null;
 }
