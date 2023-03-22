@@ -66,7 +66,7 @@ document.addEventListener('keydown', function(event) {
             ceButton.classList.add('pressed');
             setTimeout(function(){
                 ceButton.classList.remove('pressed');
-            }, 100);
+            }, 250);
         }
         else cancelNumber();
     }

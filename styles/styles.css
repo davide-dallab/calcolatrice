@@ -6,7 +6,11 @@
     color: var(--text-color);
     font-family: 'Cascadia Code', monospace;
 
-    --calculator-width: 1000px;
+    --calculator-width: 500px;
+    --button-padding: 25px;
+    --button-border-radius: 10px;
+    --button-spacing: 15px;
+    --font-size: 30px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -16,9 +20,13 @@
     }
 }
 
-@media screen and (100px < width < 1000px) {
+@media screen and (width < 750px) or (height < 650px) {
     :root{
-        --calculator-width: 500px;
+        --calculator-width: 300px;
+        --button-padding: 15px;
+        --button-border-radius: 5px;
+        --button-spacing: 10px;
+        --font-size: 20px;
     }
 }
 
@@ -42,18 +50,16 @@
 
 .calcolatrice {
     background-color: rgba(0, 0, 0);
-    /* padding: 10px; */
-    border-radius: 10px;
+    border-radius: var(--button-border-radius);
     table-layout: fixed;
-    border-spacing: 15px;
+    border-spacing: var(--button-spacing);
 }
 
 .calcolatrice td {
-    padding: 25px;
-    border-radius: 10px;
+    padding: var(--button-padding);
+    border-radius: var(--button-border-radius);
     background-color: rgba(34, 33, 33, 0.533);
-    margin: 5px;
-    font-size: 25px;
+    font-size: var(--font-size);
 }
 
 .calcolatrice td:not(#display):hover,
@@ -74,5 +80,5 @@
 }
 
 .calcolatrice .operation svg {
-    height: 25px;
+    height: var(--font-size);
 }
