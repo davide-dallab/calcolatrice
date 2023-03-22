@@ -46,42 +46,74 @@ function listenForDigit(number){
 
 // KEYBOARD
 const ceButton = document.getElementById('cancelEverything');
+const cButton = document.getElementById('cancel');
+const backspaceButton = document.getElementById('backspace');
+const addButton = document.getElementById('add');
+const subButton = document.getElementById('sub');
+const divButton = document.getElementById('div');
+const timesButton = document.getElementById('times');
+const equalButton = document.getElementById('equal');
+const commaButton = document.getElementById('comma');
+const digitButtons = [];
+
+for (let index = 0; index < digits.length; index++) {
+    const element = digits[index];
+    const digit = Number(element.textContent);
+    digitButtons[digit] = element;
+}
+
 document.addEventListener('keydown', function(event) {
     if(event.key >= '0' && event.key <= '9'){
-        addDigit(Number(event.key));
+        const digit = Number(event.key);
+        addDigit(digit);
+        pressedAnimation (digitButtons [digit]);  
     }
     else if(event.key === '.'){
         comma();
+        pressedAnimation (commaButton);
     }
     else if(event.key === 'Enter'){
         equal();
+        pressedAnimation (equalButton);
     }
     else if(event.key === 'Backspace'){
         backspace();
+        pressedAnimation (backspaceButton); 
     }
     else if(event.key === 'Delete'){
         if(event.ctrlKey || event.shiftKey){
             cancelEverything();
-            ceButton.classList.add('pressed');
-            setTimeout(function(){
-                ceButton.classList.remove('pressed');
-            }, 100);
+            pressedAnimation (ceButton);
         }
-        else cancelNumber();
+        else {
+            cancelNumber();
+            pressedAnimation (cButton);
+        } 
     }
     else if(event.key === '+'){
         addition();
+        pressedAnimation (addButton);
     }
     else if(event.key === '-'){
         subtraction();
+        pressedAnimation (subButton);
     }
     else if(event.key === '*'){
         multiplication();
+        pressedAnimation (timesButton);
     }
     else if(event.key === '/'){
         division();
+        pressedAnimation (divButton);
     }
 });
+
+function pressedAnimation (element) {
+    element.classList.add('pressed');
+        setTimeout(function(){
+            element.classList.remove('pressed');
+        }, 200);
+}
 
 // OPERATIONS
 const operationMethods = {
