@@ -29,7 +29,8 @@ function addDigit(newDigit){
         setDisplayValue(currentDisplayValue + decimalMultiplier * newDigit);
         decimalMultiplier *= .1;
     }else {
-        setDisplayValue(currentDisplayValue * 10 + newDigit);
+        setDisplayValue(currentDisplayValue * 10 + newDigit * (negative ? -1 : 1));
+        negative = false;
     }
 }
 
@@ -150,8 +151,8 @@ function multiplication(){
 
 function subtraction(){
     // TODO: sottrazione
-    if(currentDisplayValue === 0){
-
+    if(state.operation != null){
+        negative = true;
     }
     else{
         operation();

@@ -7,9 +7,11 @@ Il progetto è stato portato avanti dai seguenti membri con i seguenti ruoli:
 - Arbetti Mirco
   - Strutture dati
   - User Interface & User Experience
+  - Animazioni
 - Arlone Sara
   - Funzionalità delle operazioni
   - User Interface & User Experience
+  - Animazioni
 - Dalla Betta Davide
   - Funzionalità di base
   - Readme & Documentation
