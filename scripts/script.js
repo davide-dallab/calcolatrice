@@ -5,6 +5,7 @@ let currentDisplayValue = 0;
 let decimal = false;
 let decimalMultiplier = .1;
 let operationEnded = false;
+let negative = false;
 
 function setDisplayValue(newValue){
     if(decimal)
@@ -44,8 +45,8 @@ function listenForDigit(number){
 }
 
 // KEYBOARD
+const ceButton = document.getElementById('cancelEverything');
 document.addEventListener('keydown', function(event) {
-    console.log(event.key);
     if(event.key >= '0' && event.key <= '9'){
         addDigit(Number(event.key));
     }
@@ -59,7 +60,13 @@ document.addEventListener('keydown', function(event) {
         backspace();
     }
     else if(event.key === 'Delete'){
-        if(event.ctrlKey || event.shiftKey) cancelEverything();
+        if(event.ctrlKey || event.shiftKey){
+            cancelEverything();
+            ceButton.classList.add('pressed');
+            setTimeout(function(){
+                ceButton.classList.remove('pressed');
+            }, 100);
+        }
         else cancelNumber();
     }
     else if(event.key === '+'){
@@ -143,8 +150,13 @@ function multiplication(){
 
 function subtraction(){
     // TODO: sottrazione
-    operation();
-    state.operation = sub;
+    if(currentDisplayValue === 0){
+
+    }
+    else{
+        operation();
+        state.operation = sub;
+    }
 }
 
 function comma(){

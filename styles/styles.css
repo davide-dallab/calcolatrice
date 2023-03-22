@@ -56,7 +56,8 @@
     font-size: 25px;
 }
 
-.calcolatrice td:not(#display):hover {
+.calcolatrice td:not(#display):hover,
+.calcolatrice td.pressed {
     cursor: pointer;
     background-color: #fff4;
 }
