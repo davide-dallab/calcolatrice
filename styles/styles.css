@@ -2,17 +2,20 @@
     --text-color: #ddd;
     --background-color: #002;
 
+    --calculator-color:#000;
+
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Cascadia Code', monospace;
 
-    --calculator-width: 1000px;
+    --calculator-width: 750px;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
         --text-color: rgb(255, 255, 255);
         --background-color: #ddd;
+        --calculator-color:rgb(170, 168, 168);
     }
 }
 
@@ -41,31 +44,34 @@
 }
 
 .calcolatrice {
-    background-color: rgba(0, 0, 0);
+    background-color: var(--calculator-color);
     /* padding: 10px; */
     border-radius: 10px;
     table-layout: fixed;
     border-spacing: 15px;
+
 }
 
 .calcolatrice td {
     padding: 25px;
     border-radius: 10px;
-    background-color: rgba(34, 33, 33, 0.533);
+    background-color: rgba(0, 0, 0, 0.533);
     margin: 5px;
     font-size: 25px;
+    transition: background-color 150ms;
 }
 
 .calcolatrice td:not(#display):hover,
 .calcolatrice td.pressed {
     cursor: pointer;
-    background-color: #fff4;
+    background-color: rgba(61, 61, 61, 0.4);
 }
 
 .calcolatrice #display {
     font-size: 30px;
     text-align: right;
-    
+    background-color: rgb(144, 143, 143);
+    color:#000;
 }
 
 .calcolatrice .operation {
