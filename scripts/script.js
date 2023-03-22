@@ -132,8 +132,8 @@ const state = {
 
 function squareRoot(){
     // TODO: radice quadrata
-    operation();
     state.operation = squareR;
+    operation();
 }
 
 function division(){
@@ -198,7 +198,12 @@ function div(){
 }
 
 function squareR(){
-    setDisplayValue(Math.sqrt(currentDisplayValue));
+    if(state.storedNumber == 0){
+        state.storedNumber = currentDisplayValue;
+    }
+    if(state.storedNumber != 0){
+        setDisplayValue(Math.sqrt(state.storedNumber));
+    }
     operationEnded = true;
     state.operation = null;
 }
