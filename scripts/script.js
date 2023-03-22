@@ -139,8 +139,14 @@ function multiplication(){
 }
 
 function subtraction(){
-    // TODO: sottrazione
-    state.operation = subtraction;
+    operation();
+    state.operation = subtract;
+}
+
+function subtract(){
+    setDisplayValue(state.storedNumber - currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
 }
 
 function comma(){
@@ -148,7 +154,6 @@ function comma(){
 }
 
 function equal(){
-    // TODO: risultato
     state.operation?.();
 }
 
@@ -164,6 +169,7 @@ function add(){
 }
 
 function operation(){
+    equal();
     state.storedNumber = currentDisplayValue;
     operationEnded = true;
 }

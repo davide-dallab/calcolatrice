@@ -5,6 +5,8 @@
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Cascadia Code', monospace;
+
+    --calculator-width: 1000px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -14,8 +16,14 @@
     }
 }
 
+@media screen and (100px < width < 1000px) {
+    :root{
+        --calculator-width: 500px;
+    }
+}
+
 .content{
-    max-width: 1000px;
+    max-width: var(--calculator-width);
     width: 75%;
     text-align: center;
     margin: auto;
