@@ -5,17 +5,25 @@
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Cascadia Code', monospace;
+
+    --calculator-width: 1000px;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
-        --text-color: #002;
+        --text-color: rgb(255, 255, 255);
         --background-color: #ddd;
     }
 }
 
+@media screen and (100px < width < 1000px) {
+    :root{
+        --calculator-width: 500px;
+    }
+}
+
 .content{
-    max-width: 1000px;
+    max-width: var(--calculator-width);
     width: 75%;
     text-align: center;
     margin: auto;
@@ -33,7 +41,7 @@
 }
 
 .calcolatrice {
-    background-color: #fff8;
+    background-color: rgba(0, 0, 0);
     /* padding: 10px; */
     border-radius: 10px;
     table-layout: fixed;
@@ -43,7 +51,7 @@
 .calcolatrice td {
     padding: 25px;
     border-radius: 10px;
-    background-color: #fff8;
+    background-color: rgba(34, 33, 33, 0.533);
     margin: 5px;
     font-size: 25px;
 }
@@ -56,4 +64,10 @@
 .calcolatrice #display {
     font-size: 30px;
     text-align: right;
+    
+}
+
+.calcolatrice .operation {
+    color: rgb(213, 111, 47);
+    font-weight: bold;
 }

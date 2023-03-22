@@ -152,7 +152,6 @@ function comma(){
 }
 
 function equal(){
-    // TODO: risultato
     state.operation?.();
 }
 
@@ -197,6 +196,7 @@ function squareR(){
 }
 
 function operation(){
+    equal();
     state.storedNumber = currentDisplayValue;
     operationEnded = true;
 }
