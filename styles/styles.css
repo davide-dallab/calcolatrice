@@ -22,7 +22,7 @@
     }
 }
 
-@media screen and (width < 750px) or (height < 650px) {
+@media (width < 750px), (height < 650px) {
     :root{
         --calculator-width: 300px;
         --button-padding: 15px;
@@ -59,6 +59,7 @@
 
 .calcolatrice td {
     padding: var(--button-padding);
+    user-select: none;
     border-radius: var(--button-border-radius);
     font-size: var(--font-size);
     background-color: var(--calculator-color);
