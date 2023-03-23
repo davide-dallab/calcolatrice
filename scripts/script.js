@@ -7,29 +7,30 @@ let decimalMultiplier = .1;
 let operationEnded = false;
 let negative = false;
 
-function setDisplayValue(newValue){
-    if(decimal)
+function setDisplayValue(newValue) {
+    if (decimal)
         newValue = floorTo(newValue, decimalMultiplier);
     currentDisplayValue = newValue;
     display.textContent = newValue;
 }
 
-function resetDecimal(){
+function resetDecimal() {
     decimal = false;
     decimalMultiplier = .1;
 }
 
-function addDigit(newDigit){
-    if(operationEnded){
+function addDigit(newDigit) {
+    if (operationEnded) {
         resetDecimal();
         setDisplayValue(0);
         operationEnded = false;
     }
-    if(decimal){
+    if (decimal) {
         setDisplayValue(currentDisplayValue + decimalMultiplier * newDigit);
         decimalMultiplier *= .1;
-    }else {
-        setDisplayValue(currentDisplayValue * 10 + newDigit);
+    } else {
+        setDisplayValue(currentDisplayValue * 10 + newDigit * (negative ? -1 : 1));
+        negative = false;
     }
 }
 
@@ -40,7 +41,7 @@ for (let index = 0; index < digits.length; index++) {
     element.addEventListener('click', () => listenForDigit(Number(element.textContent)))
 }
 
-function listenForDigit(number){
+function listenForDigit(number) {
     addDigit(number);
 }
 
@@ -62,57 +63,57 @@ for (let index = 0; index < digits.length; index++) {
     digitButtons[digit] = element;
 }
 
-document.addEventListener('keydown', function(event) {
-    if(event.key >= '0' && event.key <= '9'){
+document.addEventListener('keydown', function (event) {
+    if (event.key >= '0' && event.key <= '9') {
         const digit = Number(event.key);
         addDigit(digit);
-        pressedAnimation (digitButtons [digit]);  
+        pressedAnimation(digitButtons[digit]);
     }
-    else if(event.key === '.'){
+    else if (event.key === '.') {
         comma();
-        pressedAnimation (commaButton);
+        pressedAnimation(commaButton);
     }
-    else if(event.key === 'Enter'){
+    else if (event.key === 'Enter') {
         equal();
-        pressedAnimation (equalButton);
+        pressedAnimation(equalButton);
     }
-    else if(event.key === 'Backspace'){
+    else if (event.key === 'Backspace') {
         backspace();
-        pressedAnimation (backspaceButton); 
+        pressedAnimation(backspaceButton);
     }
-    else if(event.key === 'Delete'){
-        if(event.ctrlKey || event.shiftKey){
+    else if (event.key === 'Delete') {
+        if (event.ctrlKey || event.shiftKey) {
             cancelEverything();
-            pressedAnimation (ceButton);
+            pressedAnimation(ceButton);
         }
         else {
             cancelNumber();
-            pressedAnimation (cButton);
-        } 
+            pressedAnimation(cButton);
+        }
     }
-    else if(event.key === '+'){
+    else if (event.key === '+') {
         addition();
-        pressedAnimation (addButton);
+        pressedAnimation(addButton);
     }
-    else if(event.key === '-'){
+    else if (event.key === '-') {
         subtraction();
-        pressedAnimation (subButton);
+        pressedAnimation(subButton);
     }
-    else if(event.key === '*'){
+    else if (event.key === '*') {
         multiplication();
-        pressedAnimation (timesButton);
+        pressedAnimation(timesButton);
     }
-    else if(event.key === '/'){
+    else if (event.key === '/') {
         division();
-        pressedAnimation (divButton);
+        pressedAnimation(divButton);
     }
 });
 
-function pressedAnimation (element) {
+function pressedAnimation(element) {
     element.classList.add('pressed');
-        setTimeout(function(){
-            element.classList.remove('pressed');
-        }, 200);
+    setTimeout(function () {
+        element.classList.remove('pressed');
+    }, 200);
 }
 
 // OPERATIONS
@@ -132,117 +133,115 @@ const operations = document.getElementsByClassName('operation');
 for (let index = 0; index < operations.length; index++) {
     const element = operations[index];
     const method = operationMethods[element.textContent];
-    if(method)
+    if (method)
         element.addEventListener('click', method)
 }
+document.getElementById('backspace').addEventListener('click', backspace);
 
-function cancelEverything(){
+function cancelEverything() {
     cancelNumber();
     state.storedNumber = 0;
 }
 
-function cancelNumber(){
+function cancelNumber() {
     setDisplayValue(0);
     resetDecimal();
 }
 
-function backspace(){
-    if(decimal){
+function backspace() {
+    if (decimal) {
         decimalMultiplier *= 10;
         setDisplayValue((decimalMultiplier * 10) * Math.floor(currentDisplayValue / (decimalMultiplier * 10)));
-        if(decimalMultiplier >= .1) resetDecimal();
-    }else {
+        if (decimalMultiplier >= .1) resetDecimal();
+    } else {
         setDisplayValue(Math.floor(currentDisplayValue / 10));
     }
 }
 
-// TODO: struttura per mantenere i risultati
 const state = {
     storedNumber: 0,
     operation: null
 };
 
-function squareRoot(){
-    // TODO: radice quadrata
+function squareRoot() {
     operation();
-    state.operation = squareR;
+    state.operation = sqrt;
+    equal();
 }
 
-function division(){
-    // TODO: divisione
-    operation();
-    state.operation = div;
-}
-
-function multiplication(){
-    // TODO: moltiplicazione
-    operation();
-    state.operation = times;
-}
-
-function subtraction(){
-    // TODO: sottrazione
-    if(currentDisplayValue === 0){
-
+function sqrt() {
+    if (state.storedNumber != 0) {
+        setDisplayValue(Math.sqrt(state.storedNumber));
     }
-    else{
-        operation();
-        state.operation = sub;
-    }
+    operationEnded = true;
+    state.operation = null;
 }
 
-function comma(){
-    decimal = true;
-}
-
-function equal(){
-    state.operation?.();
-}
-
-function addition(){
+function division() {
     operation();
-    state.operation = add;
-    
+    state.operation = divide;
 }
 
-function add(){
-    setDisplayValue(state.storedNumber + currentDisplayValue);
-    operationEnded = true;
-    state.operation = null;
-}
-
-function sub(){
-    setDisplayValue(state.storedNumber - currentDisplayValue);
-    operationEnded = true;
-    state.operation = null;
-}
-
-function times(){
-    setDisplayValue(state.storedNumber * currentDisplayValue);
-    operationEnded = true;
-    state.operation = null;
-}
-
-function div(){
+function divide() {
     setDisplayValue(state.storedNumber / currentDisplayValue);
     operationEnded = true;
     state.operation = null;
 }
 
-function squareR(){
-    setDisplayValue(Math.sqrt(storedNumber));
+function multiplication() {
+    operation();
+    state.operation = multiply;
+}
+
+function multiply() {
+    setDisplayValue(state.storedNumber * currentDisplayValue);
     operationEnded = true;
     state.operation = null;
 }
 
-function operation(){
+function subtraction() {
+    if (state.storedNumber === currentDisplayValue) {
+        negative = true;
+    }
+    else {
+        operation();
+        state.operation = subtract;
+    }
+}
+
+function subtract() {
+    setDisplayValue(state.storedNumber - currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function comma() {
+    decimal = true;
+}
+
+function equal() {
+    state.operation?.();
+}
+
+function addition() {
+    operation();
+    state.operation = add;
+}
+
+function add() {
+    setDisplayValue(state.storedNumber + currentDisplayValue);
+    operationEnded = true;
+    state.operation = null;
+}
+
+function operation() {
     equal();
     state.storedNumber = currentDisplayValue;
     operationEnded = true;
 }
 
 // UTILS
-function floorTo(number, precision){
+function floorTo(number, precision) {
     const realPrecision = Math.round(1 / precision);
     return Math.floor(number * realPrecision + .1) / realPrecision;
 }

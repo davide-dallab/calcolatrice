@@ -1,27 +1,50 @@
 :root {
     --text-color: #ddd;
-    --background-color: #002;
-
-    --calculator-color:#000;
+    --background-color: #004;
 
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Cascadia Code', monospace;
+    
+    --calculator-color:#000;
+    --button-hover-color: rgba(61, 61, 61, 0.4);
+    --display-background-color: rgb(144, 143, 143);
 
-    --calculator-width: 750px;
+    --calculator-width: 500px;
+    --button-padding: 25px;
+    --button-border-radius: 10px;
+    --button-spacing: 15px;
+    --font-size: 30px;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
-        --text-color: rgb(255, 255, 255);
+        --text-color: #004;
         --background-color: #ddd;
-        --calculator-color:rgb(170, 168, 168);
+
+        --calculator-color:rgb(255, 255, 255);
+        --button-hover-color: rgba(197, 197, 197, 0.3);
+        --display-background-color: rgb(232, 232, 232);
     }
 }
 
-@media screen and (100px < width < 1000px) {
+@media (width < 750px), (height < 650px) {
     :root{
-        --calculator-width: 500px;
+        --calculator-width: 300px;
+        --button-padding: 15px;
+        --button-border-radius: 7.5px;
+        --button-spacing: 10px;
+        --font-size: 20px;
+    }
+}
+
+@media (width < 350px), (height < 400px) {
+    :root{
+        --calculator-width: 200px;
+        --button-padding: 5px;
+        --button-border-radius: 5px;
+        --button-spacing: 5px;
+        --font-size: 12px;
     }
 }
 
@@ -45,32 +68,30 @@
 
 .calcolatrice {
     background-color: var(--calculator-color);
-    /* padding: 10px; */
-    border-radius: 10px;
+    border-radius: var(--button-border-radius);
     table-layout: fixed;
-    border-spacing: 15px;
-
+    border-spacing: var(--button-spacing);
 }
 
 .calcolatrice td {
-    padding: 25px;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.533);
-    margin: 5px;
-    font-size: 25px;
+    padding: var(--button-padding);
+    user-select: none;
+    border-radius: var(--button-border-radius);
+    font-size: var(--font-size);
+    background-color: var(--calculator-color);
     transition: background-color 150ms;
 }
 
 .calcolatrice td:not(#display):hover,
 .calcolatrice td.pressed {
     cursor: pointer;
-    background-color: rgba(61, 61, 61, 0.4);
+    background-color: var(--button-hover-color);
 }
 
 .calcolatrice #display {
-    font-size: 30px;
+    font-size: calc(var(--font-size) / 3 * 4);
     text-align: right;
-    background-color: rgb(144, 143, 143);
+    background-color: var(--display-background-color);
     color:#000;
 }
 
@@ -80,5 +101,5 @@
 }
 
 .calcolatrice .operation svg {
-    height: 25px;
+    height: var(--font-size);
 }
