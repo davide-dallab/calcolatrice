@@ -2,12 +2,11 @@
     --text-color: #ddd;
     --background-color: #002;
 
-    --calculator-color:#000;
-
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Cascadia Code', monospace;
-
+    
+    --calculator-color:#000;
     --calculator-width: 500px;
     --button-padding: 25px;
     --button-border-radius: 10px;

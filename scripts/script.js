@@ -157,33 +157,28 @@ function backspace(){
     }
 }
 
-// TODO: struttura per mantenere i risultati
 const state = {
     storedNumber: 0,
     operation: null
 };
 
 function squareRoot(){
-    // TODO: radice quadrata
     operation();
     state.operation = squareR;
 }
 
 function division(){
-    // TODO: divisione
     operation();
     state.operation = div;
 }
 
 function multiplication(){
-    // TODO: moltiplicazione
     operation();
     state.operation = times;
 }
 
 function subtraction(){
-    // TODO: sottrazione
-    if(state.operation != null){
+    if(state.operation === null && state.storedNumber === currentDisplayValue){
         negative = true;
     }
     else{
@@ -203,7 +198,6 @@ function equal(){
 function addition(){
     operation();
     state.operation = add;
-    
 }
 
 function add(){

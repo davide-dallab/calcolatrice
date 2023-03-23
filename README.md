@@ -19,6 +19,7 @@ Il progetto è stato portato avanti dai seguenti membri con i seguenti ruoli:
 - Laios Cristian Daniel
   - Funzionalità delle operazioni
   - Gestione repository
+  - Refactoring
 
 ## Il progetto
 
