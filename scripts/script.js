@@ -225,7 +225,9 @@ function div(){
 }
 
 function squareR(){
-    setDisplayValue(Math.sqrt(storedNumber));
+    if(state.storedNumber != 0){
+        setDisplayValue(Math.sqrt(state.storedNumber));
+    }
     operationEnded = true;
     state.operation = null;
 }
